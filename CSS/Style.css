@@ -3,31 +3,30 @@ body{
     background-position: center top;
     background-size: cover;
     background-repeat: no-repeat;
+    font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
 }
 
-.navbar-custom {
+.header-main {
     padding-top: 0.2rem;
     padding-bottom: 0.2rem;
-  }
+}
+
+.nombre{
+    font-size: 2.5rem;
+}
 
 .logo-nombre{
     padding-left: 15%;
 }
 
 .botones{
-    padding-right: 15%;
+    margin-left: 18%;
 }
- .carta-poker{
-    margin-top: 13%;
-    margin-left: 30%;
- }
 
- .boton-carta{
+.boton-carta{
     width: 100%;
- }
+}
 
- .carta-black{
-    margin-top: 0%;
-    margin-right: 30%;
- }
- 
+.contenedor-cartas{
+    margin-top: 10%;
+}
