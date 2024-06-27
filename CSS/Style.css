@@ -47,3 +47,7 @@ body{
     z-index: 9999;
     display: none;
 }
+
+.registro{
+    background-color: aqua;
+}
