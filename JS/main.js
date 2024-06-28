@@ -2,7 +2,7 @@
   y aparecerá el formulario de inicio de sesión*/
 document.addEventListener('DOMContentLoaded', function() {
     // Obtener el botón por su ID
-    const button = document.getElementById('BtnInciar');
+    const button = document.getElementById('BtnIniciar');
 
     // Verificar si el botón existe en el DOM
     if (button) {
@@ -10,7 +10,7 @@ document.addEventListener('DOMContentLoaded', function() {
         mostrarInicio(button);
 
     } else {
-        console.error('El botón con ID "BtnInciar" no se encontró en el DOM');
+        console.error('El botón con ID "BtnIniciar" no se encontró en el DOM');
     }
 });
 
@@ -29,28 +29,37 @@ function mostrarInicio(button) {
             document.body.appendChild(borroso);
 
             //Se crea el formulario de inicio de sesion
-            const inicio = document.createElement('form');
-            inicio.setAttribute('action', '#');
-            inicio.id = 'inicio';
+            const inicio = document.createElement('div');
+            inicio.className = 'card w-25 inicio';
             inicio.innerHTML = `
-                <h2>Inicio de sesión</h2>
-                <div class="inputbox">
-                    <ion-icon name="mail-outline"></ion-icon>
-                    <input type="email" required>
-                    <label for="email">Email</label>
-                </div>
-                <div class="inputbox">
-                    <ion-icon name="lock-closed-outline"></ion-icon>
-                    <input type="password" required>
-                    <label for="password">Contraseña</label>
-                </div>
-                <div class="forget">
-                    <label for="checkbox"><input type="checkbox">Recordar Contraseña <a href="#">¿Olvidó la contraseña?</a></label>
-                </div>
-                <button><span style="color: rgb(255, 255, 255)">Iniciar sesión</span></button>
-                <div class="register">
-                    <p>¿No tienes cuenta? <a href="#">Regístrate</a></p>
-                </div>
+                <form class="row g-2 p-3">
+                    <div class="col-12">
+                        <label for="userInput" class="form-label">Nombre de usuario</label>
+                        <input type="text" class="form-control" id="userInput">
+                    </div>
+
+                    <div class="col-12">
+                        <label for="passInput" class="form-label">Contraseña</label>
+                        <input type="password" class="form-control" id="passInput">
+                    </div>
+
+                    <div class="col-lg-5 col-sm-12">
+                        <input type="checkbox" id="checkTerms" class="form-check-input">
+                        <label for="checkTerms" class="form-check-label">Recordar contraseña</label>
+                    </div>
+                    
+                    <div class="col-lg-7 col-sm-12">
+                        <p>¿No tienes cuenta? <a href="">Crear cuenta</a></p>
+                    </div>
+
+                    <div class="col-lg-9 col-sm-12">
+                        <button type="submit" class="btn btn-primary w-100">Iniciar Sesión</button>
+                    </div>
+
+                    <div class="col-lg-3 col-sm-12">
+                        <button class="btn btn-danger w-100">Volver</button>
+                    </div>
+                </form>
             `;
             
             //Se agrega al div nuevo 
@@ -79,7 +88,7 @@ function mostrarInicio(button) {
     }
 });
 
-//Crea un div con un estilo borroso oscuro para no poder ver la pagina y muestra el inicio
+//Crea un div con un estilo borroso oscuro para no poder ver la pagina y muestra el registro
 function mostrarRegistro(button) {
     // Agregar un evento click al botón
     button.addEventListener('click', function() {
@@ -93,59 +102,56 @@ function mostrarRegistro(button) {
             // Insertar el div en el DOM
             document.body.appendChild(borroso);
 
-            //Se crea el formulario de inicio de sesion
-            const inicio = document.createElement('form');
-            inicio.setAttribute('action', '#');
-            inicio.id = 'inicio';
-            inicio.innerHTML = `
-                <form class="row g-3" registro>
-                    <div class="col-md-4">
-                        <label for="validationDefault01" class="form-label">First name</label>
-                        <input type="text" class="form-control" id="validationDefault01" value="Mark" required>
-                    </div>
-                    <div class="col-md-4">
-                        <label for="validationDefault02" class="form-label">Last name</label>
-                        <input type="text" class="form-control" id="validationDefault02" value="Otto" required>
-                    </div>
-                    <div class="col-md-4">
-                        <label for="validationDefaultUsername" class="form-label">Username</label>
-                        <div class="input-group">
-                        <span class="input-group-text" id="inputGroupPrepend2">@</span>
-                        <input type="text" class="form-control" id="validationDefaultUsername" aria-describedby="inputGroupPrepend2" required>
-                        </div>
-                    </div>
-                    <div class="col-md-6">
-                        <label for="validationDefault03" class="form-label">City</label>
-                        <input type="text" class="form-control" id="validationDefault03" required>
-                    </div>
-                    <div class="col-md-3">
-                        <label for="validationDefault04" class="form-label">State</label>
-                        <select class="form-select" id="validationDefault04" required>
-                        <option selected disabled value="">Choose...</option>
-                        <option>...</option>
-                        </select>
-                    </div>
-                    <div class="col-md-3">
-                        <label for="validationDefault05" class="form-label">Zip</label>
-                        <input type="text" class="form-control" id="validationDefault05" required>
-                    </div>
+            //Se crea el formulario de registro
+            const registro = document.createElement('div');
+            registro.className = 'card w-50 registro';
+            registro.innerHTML = `
+                <form class="row g-2 p-3">
                     <div class="col-12">
-                        <div class="form-check">
-                        <input class="form-check-input" type="checkbox" value="" id="invalidCheck2" required>
-                        <label class="form-check-label" for="invalidCheck2">
-                            Agree to terms and conditions
+                        <label for="userInput" class="form-label">Nombre de usuario</label>
+                        <input type="text" class="form-control" id="userInput" placeholder="@example">
+                    </div>
+
+                    <div class="col-12">
+                        <label for="emailInput" class="form-label">Email</label>
+                        <input type="email" class="form-control" id="emailInput" placeholder="example@example.com">
+                    </div>
+
+                    <div class="col-lg-6 col-sm-12">
+                        <label for="passInput" class="form-label">Contraseña</label>
+                        <input type="password" class="form-control" id="passInput" placeholder="**********">
+                    </div>
+
+                    <div class="col-lg-6 col-12">
+                        <label for="confirPassInput" class="form-label">Confirmar Contraseña</label>
+                        <input type="password" class="form-control" id="confirPassInput" placeholder="**********">
+                    </div>
+
+                    <div class="col-12">
+                        <input type="checkbox" id="checkTerms" class="form-check-input">
+                        <label for="checkTerms" class="form-check-label">
+                            Acepto los 
+                            <a href="https://youtu.be/dQw4w9WgXcQ?si=Man-EowZieY7LfDw" target="_blank">terminos y condiciones</a>
                         </label>
-                        </div>
                     </div>
-                    <div class="col-12">
-                        <button class="btn btn-primary" type="submit">Submit form</button>
+
+                    <div class="col-lg-5 col-sm-12">
+                        <button type="submit" class="btn btn-primary w-100">Registrarse</button>
+                    </div>
+
+                    <div class="col-lg-4 col-sm-12">
+                        <button type="reset" class="btn btn-dark w-100">Borrar</button>
+                    </div>
+
+                    <div class="col-lg-3 col-sm-12">
+                        <button class="btn btn-danger w-100">Volver</button>
                     </div>
                 </form>
             `;
             
             //Se agrega al div nuevo 
-            borroso.appendChild(inicio);
-            inicio.style.display = 'block';
+            borroso.appendChild(registro);
+            registro.style.display = 'block';
 
         }
         // Mostrar el div cambiando su propiedad display

@@ -43,11 +43,16 @@ body{
     display: none; /* Inicialmente oculto */
 }
 
-#inicio{
-    z-index: 9999;
-    display: none;
+.inicio{
+    background-color: rgb(255, 255, 255);
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 10%;
 }
 
 .registro{
-    background-color: aqua;
+    background-color: rgb(255, 255, 255);
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 10%;
 }
