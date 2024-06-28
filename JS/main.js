@@ -74,7 +74,7 @@ function mostrarInicio(button) {
 
 /*Al pulsar sobre el boton de Registrarse en la pagina main la pagina se oscurecerá y pondrá borrosa
   y aparecerá el formulario de registro*/
-  document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function() {
     // Obtener el botón por su ID
     const button = document.getElementById('BtnRegistrarse');
 
@@ -106,20 +106,20 @@ function mostrarRegistro(button) {
             const registro = document.createElement('div');
             registro.className = 'card w-50 registro';
             registro.innerHTML = `
-                <form class="row g-2 p-3">
+                <form class="row g-2 p-3" method="post">
                     <div class="col-12">
                         <label for="userInput" class="form-label">Nombre de usuario</label>
-                        <input type="text" class="form-control" id="userInput" placeholder="@example">
+                        <input type="text" name="nombre" class="form-control" id="userInput" placeholder="@example">
                     </div>
 
                     <div class="col-12">
                         <label for="emailInput" class="form-label">Email</label>
-                        <input type="email" class="form-control" id="emailInput" placeholder="example@example.com">
+                        <input type="email" name="email" class="form-control" id="emailInput" placeholder="example@example.com">
                     </div>
 
                     <div class="col-lg-6 col-sm-12">
                         <label for="passInput" class="form-label">Contraseña</label>
-                        <input type="password" class="form-control" id="passInput" placeholder="**********">
+                        <input type="password" name="contraseña" class="form-control" id="passInput" placeholder="**********">
                     </div>
 
                     <div class="col-lg-6 col-12">
@@ -136,7 +136,7 @@ function mostrarRegistro(button) {
                     </div>
 
                     <div class="col-lg-5 col-sm-12">
-                        <button type="submit" class="btn btn-primary w-100">Registrarse</button>
+                        <button type="submit" name="registrar" class="btn btn-primary w-100">Registrarse</button>
                     </div>
 
                     <div class="col-lg-4 col-sm-12">
@@ -147,6 +147,9 @@ function mostrarRegistro(button) {
                         <button class="btn btn-danger w-100">Volver</button>
                     </div>
                 </form>
+                <?php
+                include("registrar.php");
+                ?>
             `;
             
             //Se agrega al div nuevo 
