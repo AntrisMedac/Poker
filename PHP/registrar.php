@@ -1,22 +1,35 @@
 <?php
-include("conexion.php");
+include('conexion.php'); // Asegúrate de que este archivo incluya correctamente la conexión
 
-if (isset($_POST["registrar"])) {
-    $nombre = trim($_POST["nombre"]);
-    $email = trim($_POST["email"]);
-    $contraseña = trim($_POST["contraseña"]);
+if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['registrar'])) {
+    // Recoger los datos del formulario
+    $nombre = $_POST['nombre'];
+    $email = $_POST['email'];
+    $contraseña = $_POST['contraseña'];
 
-    if (strlen($nombre) > 0 && strlen($contraseña) > 0 && strlen($email) > 0) {
-        $consulta = "INSERT INTO `usuarios`(`Nombre_Usuario`, `Contraseña`, `Email`) VALUES ('$nombre','$contraseña','$email')";
-        $resultado = mysqli_query($conex, $consulta);
-
-        if ($resultado) {
-            echo "Registro correcto";
-        } else {
-            echo "Error en la consulta: " . mysqli_error($conex);
-        }
-    } else {
-        echo "Por favor, complete todos los campos.";
+    // Validar los datos
+    if (empty($nombre) || empty($email) || empty($contraseña)) {
+        die("Por favor, completa todos los campos.");
     }
+
+    // Escapar caracteres especiales para evitar inyección SQL
+    $nombre = $conexion->real_escape_string($nombre);
+    $email = $conexion->real_escape_string($email);
+    $contraseña = $conexion->real_escape_string($contraseña);
+
+    // Encriptar la contraseña
+    $hashed_password = password_hash($contraseña, PASSWORD_DEFAULT);
+
+    // Insertar los datos en la base de datos
+    $sql = "INSERT INTO usuarios (nombre, email, contraseña) VALUES ('$nombre', '$email', '$hashed_password')";
+
+    if ($conexion->query($sql) === TRUE) {
+        echo "Registro exitoso";
+    } else {
+        echo "Error: " . $sql . "<br>" . $conexion->error;
+    }
+
+    // Cerrar la conexión
+    $conexion->close();
 }
 ?>
