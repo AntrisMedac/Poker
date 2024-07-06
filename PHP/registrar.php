@@ -21,7 +21,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['registrar'])) {
     $hashed_password = password_hash($contraseña, PASSWORD_DEFAULT);
 
     // Insertar los datos en la base de datos
-    $sql = "INSERT INTO usuarios (nombre, email, contraseña) VALUES ('$nombre', '$email', '$hashed_password')";
+    $sql = "INSERT INTO usuarios (`Nombre_Usuario`, `Contraseña`, `Email`) VALUES ($nombre, $hashed_password, $email)";
 
     if ($conexion->query($sql) === TRUE) {
         echo "Registro exitoso";

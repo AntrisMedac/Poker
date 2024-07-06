@@ -106,7 +106,7 @@ function mostrarRegistro(button) {
             const registro = document.createElement('div');
             registro.className = 'card w-50 registro';
             registro.innerHTML = `
-                <form class="row g-2 p-3" method="post">
+                <form class="row g-2 p-3" method="post" action="../PHP/registrar.php">
                     <div class="col-12">
                         <label for="userInput" class="form-label">Nombre de usuario</label>
                         <input type="text" name="nombre" class="form-control" id="userInput" placeholder="@example">
@@ -147,9 +147,6 @@ function mostrarRegistro(button) {
                         <button class="btn btn-danger w-100">Volver</button>
                     </div>
                 </form>
-                <?php
-                include("registrar.php");
-                ?>
             `;
             
             //Se agrega al div nuevo 
