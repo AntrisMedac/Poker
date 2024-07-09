@@ -32,32 +32,37 @@ function mostrarInicio(button) {
             const inicio = document.createElement('div');
             inicio.className = 'card w-25 inicio';
             inicio.innerHTML = `
-                <form class="row g-2 p-3">
+                <form class="row g-2 p-3" method="POST" action="../PHP/login.php">
                     <div class="col-12">
                         <label for="userInput" class="form-label">Nombre de usuario</label>
-                        <input type="text" class="form-control" id="userInput">
+                        <input type="text" name="nombre" class="form-control" id="userInput" required>
                     </div>
-
+                
                     <div class="col-12">
                         <label for="passInput" class="form-label">Contraseña</label>
-                        <input type="password" class="form-control" id="passInput">
+                        <input type="password" name="contraseña" class="form-control" id="passInput" required>
                     </div>
 
+                    <?php
+                        include(../PHP/conexion.php);
+                        include(../PHP/login.php);
+                    ?>
+                
                     <div class="col-lg-5 col-sm-12">
                         <input type="checkbox" id="checkTerms" class="form-check-input">
                         <label for="checkTerms" class="form-check-label">Recordar contraseña</label>
                     </div>
                     
                     <div class="col-lg-7 col-sm-12">
-                        <p>¿No tienes cuenta? <a href="">Crear cuenta</a></p>
+                        <p>¿No tienes cuenta? <a href="register.php">Crear cuenta</a></p>
                     </div>
-
+                
                     <div class="col-lg-9 col-sm-12">
-                        <button type="submit" class="btn btn-primary w-100">Iniciar Sesión</button>
+                        <button type="submit" name="logear" class="btn btn-primary w-100">Iniciar Sesión</button>
                     </div>
-
+                
                     <div class="col-lg-3 col-sm-12">
-                        <button class="btn btn-danger w-100">Volver</button>
+                        <button type="button" class="btn btn-danger w-100" onclick="history.back()">Volver</button>
                     </div>
                 </form>
             `;
@@ -124,7 +129,7 @@ function mostrarRegistro(button) {
 
                     <div class="col-lg-6 col-12">
                         <label for="confirPassInput" class="form-label">Confirmar Contraseña</label>
-                        <input type="password" class="form-control" id="confirPassInput" placeholder="**********">
+                        <input type="password" name="confirmarContraseña" class="form-control" id="confirPassInput" placeholder="**********">
                     </div>
 
                     <div class="col-12">
@@ -157,4 +162,10 @@ function mostrarRegistro(button) {
         // Mostrar el div cambiando su propiedad display
         borroso.style.display = 'block';
     });
+}
+
+/*Si al inciar sesion los datos son correctos se eliminaran los botones de iniciar sesion y registrarse para dar
+  dar paso a mostrar la imagen de perfil, el nombre y un menú desplegable. Ocurrira los mismo al registrarse exitosamente*/
+function mostrarPerfil(button){
+    
 }

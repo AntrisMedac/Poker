@@ -3,25 +3,27 @@ include('conexion.php'); // Asegúrate de que este archivo incluya correctamente
 
 if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['registrar'])) {
     // Recoger los datos del formulario
-    $nombre = $_POST['nombre'];
-    $email = $_POST['email'];
-    $contraseña = $_POST['contraseña'];
+    $nombre = trim($_POST['nombre']);
+    $email = trim($_POST['email']);
+    $contraseña = trim($_POST['contraseña']);
+    $confirmarContraseña = trim($_POST['confirmarContraseña']);
 
     // Validar los datos
-    if (empty($nombre) || empty($email) || empty($contraseña)) {
+    if (empty($nombre) || empty($email) || empty($contraseña) || empty($confirmarContraseña)) {
         die("Por favor, completa todos los campos.");
+    }
+
+    // Verificar que las contraseñas coincidan
+    if ($contraseña !== $confirmarContraseña) {
+        die("Las contraseñas no coinciden.");
+    } else{
+        // Insertar los datos en la base de datos
+        $sql = "INSERT INTO usuarios (Nombre_Usuario, Contraseña, Email) VALUES ('$nombre', '$contraseña', '$email')";
     }
 
     // Escapar caracteres especiales para evitar inyección SQL
     $nombre = $conexion->real_escape_string($nombre);
     $email = $conexion->real_escape_string($email);
-    $contraseña = $conexion->real_escape_string($contraseña);
-
-    // Encriptar la contraseña
-    $hashed_password = password_hash($contraseña, PASSWORD_DEFAULT);
-
-    // Insertar los datos en la base de datos
-    $sql = "INSERT INTO usuarios (`Nombre_Usuario`, `Contraseña`, `Email`) VALUES ('$nombre', '$hashed_password', '$email')";
 
     if ($conexion->query($sql) === TRUE) {
         echo "Registro exitoso";
