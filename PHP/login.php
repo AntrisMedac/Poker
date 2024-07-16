@@ -15,7 +15,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $sql = $conexion->query("SELECT * FROM usuarios WHERE Nombre_Usuario = '$usuario' AND Contraseña = '$contraseña'");
 
         if($datos=$sql->fetch_object()){
-            header("location:../HTML/index.html");
+            header("location:../HTML/iniciado.html");
         }else{
             echo '<div class="alert alert-danger">"Aceso denegado"</div>';
         }
